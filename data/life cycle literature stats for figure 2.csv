@@ -1,15 +1,10 @@
-Stressor,Adult,Juvenile,Gametophytes,Zoospores
-Algal competition,6,1,1,0
-Benthic sediment,6,0,1,0
-Contaminants,5,3,5,5
-Currents,1,0,1,0
-Epiphytes,36,2,0,0
-Grazing,44,7,1,1
-Irradiance,3,0,0,0
-Light,4,0,2,0
-Mechanical damage,15,1,0,0
-Nutrients,29,9,9,5
-Salinity,16,3,6,0
-Temperature,133,14,42,0
-Water clarity,17,1,0,0
-Water/wave motion,6,0,1,0
+Stressor,Adults,Juveniles,Gametophytes,Zoospores
+Algal competition,9,1,0,1
+Benthic sediment,7,0,0,2
+Contaminants,7,0,5,5
+Epiphytes,33,0,0,0
+Tissue damage,77,3,0,0
+Nutrients,36,4,6,6
+Salinity,16,3,3,3
+Temperature,153,21,36,4
+Water clarity,26,0,1,0
