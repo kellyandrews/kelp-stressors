@@ -1,12 +1,31 @@
-#packages needed
+---
+title: "Kelp stressors paper life-cycle figure"
+author: "Kelly Andrews"
+date: "4/12/2021"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Life cycle figure for kelp stressors paper
+
+This creates pie charts showing literature review results by life cycle stage and direct stressors (Pressures) on kelp habitats.
+
+Packages needed:
+```{r packages}
 library(tidyverse)
 library(ggforce)
 library(ggpubr)
 library(patchwork)
 library(png)
+library(tinytex)
+```
 
-
-#import life cycle related data
+Import data
+```{r import and manipulate data}
 dat <- read.csv("data/life cycle literature stats for figure 2.csv", header = TRUE)
 
 #pivot data and change factor level order of lifestages to get in correct life-cycle order
@@ -15,8 +34,10 @@ dat <- dat %>%
                names_to = "lifestage",
                values_to = "papers") %>%
   mutate(lifestage = factor(lifestage, levels = c("Adults", "Zoospores", "Gametophytes", "Juveniles")))
+```
 
-# calculate the start and end angles for each pie
+Calculate angle position for each pie
+```{r calculate angles}
 dat_pies <- left_join(dat,
                       dat %>% 
                         group_by(Stressor) %>%
@@ -25,12 +46,16 @@ dat_pies <- left_join(dat,
   mutate(end_angle = 2*pi*cumsum(papers)/Cnt_total,      # ending angle for each pie slice
          start_angle = lag(end_angle, default = 0),   # starting angle for each pie slice
          mid_angle = 0.5*(start_angle + end_angle))   # middle of each pie slice, for the text label
+```
 
-#label and rotation parameters
+Label locations and rotation parameters
+```{r labels and rotation parameters}
 rpie = 1 # pie radius
 rlabel = c(rep(0.7 * rpie, 20), 1.1, rep(0.7 * rpie, 4)) # radius of the labels - 0.5 would place it exactly in the middle, but a number slightly larger than 0.5 seems to look better. This gives each label a value so that I could move numbers to the outside edge of the pie if its slice was too tiny to hold the value. 
 rot = pi * 1.1  #in order to keep adults in the left/upper portion of all the pies; larger values for "rot" rotate Adult's lower starting point clockwise
+```
 
+```{r figure code, echo=FALSE, fig.width=13, fig.height=7}
 # draw the pies
   p1 <- ggplot(dat_pies %>%
          filter(papers != 0)) +
@@ -56,7 +81,7 @@ rot = pi * 1.1  #in order to keep adults in the left/upper portion of all the pi
         axis.title = element_blank(),
         axis.text = element_blank()) +
   ggsave("p1.png", dpi = 300, width = 3, height = 3.5, units = "in")
-p1  
+#p1  
 
 #import life cycle image provided by Su Kim
 lc <- readPNG("data/Bull kelp life cycle APR022021.png")
@@ -68,8 +93,13 @@ lc <- ggplot() +
   coord_fixed() +
   ggsave("lc.png", dpi = 300, width = 3.5, height = 3.5, units = "in")
 
-
+lc + p1 + plot_layout(widths = c(1,1)) + plot_annotation(tag_levels = 'A')
+```
+Save plot
+```{r save image}
 png("Figure 2. Life cycle literature stats.png", width = 13, height = 7, units = "in", res = 300)
 lc + p1 + plot_layout(widths = c(1,1)) + plot_annotation(tag_levels = 'A')
 dev.off()
+
+```
 
