@@ -1,7 +1,7 @@
 ---
 title: "Kelp stressors paper life-cycle figure"
 author: "Kelly Andrews"
-date: "4/12/2021"
+date: "4/13/2021"
 output:
   pdf_document: default
 ---
@@ -26,7 +26,7 @@ library(tinytex)
 
 Import data
 ```{r import and manipulate data}
-dat <- read.csv("data/life cycle literature stats for figure 2.csv", header = TRUE)
+dat <- read.csv("data/life cycle literature stats.csv", header = TRUE)
 
 #pivot data and change factor level order of lifestages to get in correct life-cycle order
 dat <- dat %>%
