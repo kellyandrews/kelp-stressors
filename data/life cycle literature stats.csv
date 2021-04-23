@@ -1,10 +1,10 @@
 Stressor,Adults,Juveniles,Gametophytes,Zoospores
-Algal competition,9,1,0,1
-Benthic sedimentation,7,0,0,2
+Algal competition,8,1,0,1
+Benthic sedimentation,5,0,0,2
 Contaminants,7,0,5,5
-Epiphytes,33,0,0,0
-Tissue damage,77,3,0,0
-Nutrients,36,4,6,6
-Salinity,16,3,3,3
-Temperature,153,21,36,4
-Water clarity,26,0,1,0
+Epiphytes,31,0,0,0
+Tissue damage,62,3,0,0
+Nutrients,37,4,6,6
+Salinity,17,3,3,3
+Temperature,152,20,36,4
+Water clarity,23,0,1,0
